@@ -23,8 +23,16 @@ async def on_member_remove(member):
 @Bot.command(aliases = ["game", "oyun"])
 async def ock(ctx, *args):
     if "roll" in args:
-        await ctx.send(game.roll_dice())
+        await ctx.send(game.roll_dice()) #zar atma
     else:
         await ctx.send('en iyisi')
 
+@Bot.command()
+async def clear(ctx, amount = 5):
+    await ctx.channel.purge(limit = amount) #mesaj silme
+
+@Bot.command(aliases=["copy"])
+async def clone_channel(ctx, amount = 1):
+    for i in range(amount):
+        await ctx.channel.clone() #kanal kopyalama
 Bot.run(TOKEN)
